@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Feel it Say it</string>
+
+    <string name="entity_label">Entity</string>
+    <string name="entity_hint">Enter entity name</string>
+    <string name="feeling_details_label">Details</string>
+    <string name="feeling_details_hint">Enter feelingDetails</string>
+
+</resources>
