@@ -62,6 +62,8 @@ public class PostFragment extends Fragment {
         postTitle = v.findViewById(R.id.post_title);
         postDetails = v.findViewById(R.id.post_details);
         postDate = v.findViewById(R.id.post_date);
+        postDate.setText(DateFormatter.formateDate(post.getDate()));
+        postDate.setEnabled(false);
 
         postTitle.addTextChangedListener(new TextWatcher() {
             @Override
@@ -71,7 +73,7 @@ public class PostFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post.setEntityName(s.toString());
+                post.setTitle(s.toString());
 
             }
 
@@ -89,7 +91,7 @@ public class PostFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post.setFeelingDetails(s.toString());
+                post.setDetails(s.toString());
             }
 
             @Override
@@ -97,9 +99,6 @@ public class PostFragment extends Fragment {
 
             }
         });
-
-        postDate.setText(DateFormatter.formateDate(post.getDate()));
-        postDate.setEnabled(false);
 
         return v;
     }

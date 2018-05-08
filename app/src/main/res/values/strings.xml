@@ -6,4 +6,7 @@
     <string name="feeling_details_label">Details</string>
     <string name="feeling_details_hint">Enter details here</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

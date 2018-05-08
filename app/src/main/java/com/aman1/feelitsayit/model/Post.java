@@ -6,8 +6,8 @@ import java.util.UUID;
 public class Post {
 
     private UUID id;
-    private String entityName;
-    private String feelingDetails;
+    private String title;
+    private String details;
     private Date date;
 
     public Post() {
@@ -23,20 +23,20 @@ public class Post {
         this.id = id;
     }
 
-    public String getEntityName() {
-        return entityName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setEntityName(String entityName) {
-        this.entityName = entityName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getFeelingDetails() {
-        return feelingDetails;
+    public String getDetails() {
+        return details;
     }
 
-    public void setFeelingDetails(String feelingDetails) {
-        this.feelingDetails = feelingDetails;
+    public void setDetails(String details) {
+        this.details = details;
     }
 
     public Date getDate() {
