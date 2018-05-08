@@ -11,6 +11,6 @@ public class PostListActivity extends SingleFragmentActivity{
 
     @Override
     protected Fragment createFragment() {
-        return PostListFragment.getInstance();
+        return new PostListFragment();
     }
 }

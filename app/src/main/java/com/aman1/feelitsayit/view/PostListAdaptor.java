@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aman1.feelitsayit.PostActivity;
 import com.aman1.feelitsayit.R;
@@ -77,10 +78,10 @@ public class PostListAdaptor extends RecyclerView.Adapter<PostListAdaptor.ViewHo
 
         @Override
         public void onClick(View v) {
-            postList.get(getAdapterPosition()).setSeen(true);
-            PostListAdaptor.this.notifyItemChanged(getAdapterPosition());
 
-            Intent intent = new Intent(context, PostActivity.class);
+            Toast.makeText(context, "POST id " + post.getId(), Toast.LENGTH_SHORT).show();
+
+            Intent intent = PostActivity.newIntent(context, post.getId());
             context.startActivity(intent);
         }
     }

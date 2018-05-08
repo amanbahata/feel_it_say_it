@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.aman1.feelitsayit.R;
+import com.aman1.feelitsayit.lab.PostLab;
 import com.aman1.feelitsayit.model.Post;
 
 import java.text.DateFormat;
+import java.util.UUID;
 
 
 /**
@@ -24,7 +27,7 @@ import java.text.DateFormat;
 public class PostFragment extends Fragment {
 
     private static final String TAG = "PostFragment";
-    private static PostFragment postFragment;
+    private static final String ARG_POST_ID = "post_id";
 
     private Post post;
 
@@ -33,25 +36,27 @@ public class PostFragment extends Fragment {
     private Button postDate;
 
 
-
-
     public PostFragment() {
         // Required empty public constructor
     }
 
-    public static PostFragment getInstance(){
-        if (postFragment == null){
-            postFragment = new PostFragment();
-        }
-        return postFragment;
+    public static PostFragment newInstance(UUID postId) {
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_POST_ID, postId);
+        PostFragment fragment = new PostFragment();
+        fragment.setArguments(args);
+
+        return fragment;
     }
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        UUID postId = (UUID) getArguments().getSerializable(ARG_POST_ID);
+        this.post = PostLab.getInstance(getActivity()).getPost(postId);
 
-        post = new Post();
+        Log.i(TAG, "onCreate: " + this.post);
     }
 
     @Override
@@ -61,11 +66,7 @@ public class PostFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_post, container, false);
 
         postTitle = v.findViewById(R.id.post_title);
-        postDetails = v.findViewById(R.id.post_details);
-        postDate = v.findViewById(R.id.post_date);
-        postDate.setText(DateFormat.getDateInstance(DateFormat.FULL).format(post.getDate()));
-        postDate.setEnabled(false);
-
+        postTitle.setText(post.getTitle());
         postTitle.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -84,6 +85,8 @@ public class PostFragment extends Fragment {
             }
         });
 
+        postDetails = v.findViewById(R.id.post_details);
+        postDetails.setText(post.getDetails());
         postDetails.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -100,6 +103,11 @@ public class PostFragment extends Fragment {
 
             }
         });
+
+        postDate = v.findViewById(R.id.post_date);
+        postDate.setText(DateFormat.getDateInstance(DateFormat.FULL).format(post.getDate()));
+        postDate.setEnabled(false);
+
 
         return v;
     }

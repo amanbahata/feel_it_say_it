@@ -21,8 +21,6 @@ import java.util.List;
 public class PostListFragment extends Fragment {
     private static final String TAG = "PostListFragment";
 
-    private static PostListFragment postListFragment;
-
     private RecyclerView postRecyclerView;
     private PostListAdaptor postListAdaptor;
 
@@ -31,12 +29,6 @@ public class PostListFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static Fragment getInstance() {
-        if (postListFragment == null){
-            postListFragment = new PostListFragment();
-        }
-        return postListFragment;
-    }
 
 
     @Override
@@ -45,11 +37,11 @@ public class PostListFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_post_list, container, false);
 
-        updateUI();
 
         postRecyclerView = v.findViewById(R.id.post_list_recycler_view);
         postRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        postRecyclerView.setAdapter(postListAdaptor);
+
+        updateUI();
 
         return v;
     }
@@ -57,7 +49,20 @@ public class PostListFragment extends Fragment {
     private void updateUI(){
         PostLab postLab = PostLab.getInstance(getActivity());
         List<Post> postList = postLab.getPosts();
-        postListAdaptor = new PostListAdaptor(getActivity(), postList);
+
+        if (postListAdaptor == null){
+            postListAdaptor = new PostListAdaptor(getActivity(), postList);
+            postRecyclerView.setAdapter(postListAdaptor);
+        }else{
+            postListAdaptor.notifyDataSetChanged();
+        }
+
+
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
+    }
 }

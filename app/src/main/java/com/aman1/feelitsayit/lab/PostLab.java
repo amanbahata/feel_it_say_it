@@ -5,6 +5,7 @@ import android.content.Context;
 import com.aman1.feelitsayit.model.Post;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -41,7 +42,7 @@ public class PostLab {
 
     public Post getPost(UUID id){
         for (Post post : postsList){
-            if (post.getId() == id){
+            if (post.getId().equals(id)){
                 return post;
             }
         }
