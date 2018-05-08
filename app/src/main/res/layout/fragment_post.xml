@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.FeelingFragment"
+    tools:context=".view.PostFragment"
     android:orientation="vertical"
     android:layout_margin="16dp">
 
@@ -14,7 +14,7 @@
         android:text="@string/entity_label"/>
 
     <EditText
-        android:id="@+id/entity_name"
+        android:id="@+id/post_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/entity_hint"
@@ -27,14 +27,14 @@
         android:text="@string/feeling_details_label"/>
 
     <EditText
-        android:id="@+id/feeling_details"
+        android:id="@+id/post_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/feeling_details_hint"
         android:inputType="text" />
 
     <Button
-        android:id="@+id/feeling_date"
+        android:id="@+id/post_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

@@ -3,14 +3,14 @@ package com.aman1.feelitsayit.model;
 import java.util.Date;
 import java.util.UUID;
 
-public class Feeling {
+public class Post {
 
     private UUID id;
     private String entityName;
     private String feelingDetails;
     private Date date;
 
-    public Feeling() {
+    public Post() {
         this.id = UUID.randomUUID();
         this.date = new Date();
     }

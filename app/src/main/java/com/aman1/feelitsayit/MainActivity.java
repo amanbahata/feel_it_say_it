@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.aman1.feelitsayit.view.FeelingFragment;
+import com.aman1.feelitsayit.view.PostFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
 
         if (fragment == null){
-            fragment = new FeelingFragment();
+            fragment = new PostFragment();
             fm.beginTransaction()
                     .add(R.id.fragment_container, fragment)
                     .commit();

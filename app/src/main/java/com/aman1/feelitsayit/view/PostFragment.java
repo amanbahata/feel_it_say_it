@@ -13,35 +13,36 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.aman1.feelitsayit.R;
-import com.aman1.feelitsayit.model.Feeling;
+import com.aman1.feelitsayit.model.Post;
+import com.aman1.feelitsayit.utilities.DateFormatter;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FeelingFragment extends Fragment {
+public class PostFragment extends Fragment {
 
-    private static final String TAG = "FeelingFragment";
-    private FeelingFragment feelingFragment;
+    private static final String TAG = "PostFragment";
+    private PostFragment postFragment;
 
-    private Feeling feeling;
+    private Post post;
 
-    private EditText entityName;
-    private EditText feelingDetails;
-    private Button feelingDate;
-
-
+    private EditText postTitle;
+    private EditText postDetails;
+    private Button postDate;
 
 
-    public FeelingFragment() {
+
+
+    public PostFragment() {
         // Required empty public constructor
     }
 
-    public FeelingFragment getInstance(){
-        if (feelingFragment == null){
-            feelingFragment = new FeelingFragment();
+    public PostFragment getInstance(){
+        if (postFragment == null){
+            postFragment = new PostFragment();
         }
-        return feelingFragment;
+        return postFragment;
     }
 
 
@@ -49,20 +50,20 @@ public class FeelingFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        feeling = new Feeling();
+        post = new Post();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_feeling, container, false);
+        View v = inflater.inflate(R.layout.fragment_post, container, false);
 
-        entityName = v.findViewById(R.id.entity_name);
-        feelingDetails = v.findViewById(R.id.feeling_details);
-        feelingDate = v.findViewById(R.id.feeling_date);
+        postTitle = v.findViewById(R.id.post_title);
+        postDetails = v.findViewById(R.id.post_details);
+        postDate = v.findViewById(R.id.post_date);
 
-        entityName.addTextChangedListener(new TextWatcher() {
+        postTitle.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -70,7 +71,7 @@ public class FeelingFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                feeling.setEntityName(s.toString());
+                post.setEntityName(s.toString());
 
             }
 
@@ -80,7 +81,7 @@ public class FeelingFragment extends Fragment {
             }
         });
 
-        feelingDetails.addTextChangedListener(new TextWatcher() {
+        postDetails.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -88,7 +89,7 @@ public class FeelingFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                feeling.setFeelingDetails(s.toString());
+                post.setFeelingDetails(s.toString());
             }
 
             @Override
@@ -97,8 +98,8 @@ public class FeelingFragment extends Fragment {
             }
         });
 
-        feelingDate.setText(feeling.getDate().toString());
-        feelingDate.setEnabled(false);
+        postDate.setText(DateFormatter.formateDate(post.getDate()));
+        postDate.setEnabled(false);
 
         return v;
     }
