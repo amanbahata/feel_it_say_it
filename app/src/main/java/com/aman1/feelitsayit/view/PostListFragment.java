@@ -21,12 +21,21 @@ import java.util.List;
 public class PostListFragment extends Fragment {
     private static final String TAG = "PostListFragment";
 
+    private static PostListFragment postListFragment;
+
     private RecyclerView postRecyclerView;
     private PostListAdaptor postListAdaptor;
 
 
     public PostListFragment() {
         // Required empty public constructor
+    }
+
+    public static Fragment getInstance() {
+        if (postListFragment == null){
+            postListFragment = new PostListFragment();
+        }
+        return postListFragment;
     }
 
 

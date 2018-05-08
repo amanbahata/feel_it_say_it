@@ -9,10 +9,12 @@ public class Post {
     private String title;
     private String details;
     private Date date;
+    private Boolean seen;
 
     public Post() {
         this.id = UUID.randomUUID();
         this.date = new Date();
+        this.seen = false;
     }
 
     public UUID getId() {
@@ -45,5 +47,13 @@ public class Post {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Boolean getSeen() {
+        return seen;
+    }
+
+    public void setSeen(Boolean seen) {
+        this.seen = seen;
     }
 }

@@ -14,7 +14,8 @@ import android.widget.EditText;
 
 import com.aman1.feelitsayit.R;
 import com.aman1.feelitsayit.model.Post;
-import com.aman1.feelitsayit.utilities.DateFormatter;
+
+import java.text.DateFormat;
 
 
 /**
@@ -23,7 +24,7 @@ import com.aman1.feelitsayit.utilities.DateFormatter;
 public class PostFragment extends Fragment {
 
     private static final String TAG = "PostFragment";
-    private PostFragment postFragment;
+    private static PostFragment postFragment;
 
     private Post post;
 
@@ -38,7 +39,7 @@ public class PostFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public PostFragment getInstance(){
+    public static PostFragment getInstance(){
         if (postFragment == null){
             postFragment = new PostFragment();
         }
@@ -62,7 +63,7 @@ public class PostFragment extends Fragment {
         postTitle = v.findViewById(R.id.post_title);
         postDetails = v.findViewById(R.id.post_details);
         postDate = v.findViewById(R.id.post_date);
-        postDate.setText(DateFormatter.formateDate(post.getDate()));
+        postDate.setText(DateFormat.getDateInstance(DateFormat.FULL).format(post.getDate()));
         postDate.setEnabled(false);
 
         postTitle.addTextChangedListener(new TextWatcher() {
