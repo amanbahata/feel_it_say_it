@@ -9,4 +9,8 @@
     <string name="post_title">Post Title</string>
     <string name="post_date">Post Date</string>
 
+    <string name="new_post">New Post</string>
+    <string name="no_posts_yet">No posts yet</string>
+    <string name="add_post">Add post</string>
+
 </resources>

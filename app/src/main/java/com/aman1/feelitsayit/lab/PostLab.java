@@ -20,20 +20,24 @@ public class PostLab {
         postsList = new ArrayList<>();
 
         // Generate 100 Random posts
-        for (int i = 0; i < 100; i ++){
-            Post post = new Post();
-            post.setTitle("Post #" + i);
-            post.setDetails("These are the details of post #" + i);
-
-            postsList.add(post);
+//        for (int i = 0; i < 100; i ++){
+//            Post post = new Post();
+//            post.setTitle("Post #" + i);
+//            post.setDetails("These are the details of post #" + i);
+//
+//            postsList.add(post);
         }
-    }
+
 
     public static PostLab getInstance(Context context){
         if (postLab == null){
             postLab = new PostLab(context);
         }
         return postLab;
+    }
+
+    public void addPost(Post post){
+        postsList.add(post);
     }
 
     public List<Post>  getPosts(){
